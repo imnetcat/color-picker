@@ -10,36 +10,14 @@ body {
     color: #555;
 }
 
-#top {
-    width: 100%;
-    background: #222;
-    text-align: center;
-    height: 35px;
-    line-height: 35px;
-}
 
-#top a {
-    color: #00FF00;
-    text-decoration: none;
-}
-
-.logo {
-    width: 200px;
-    font: 22px/125% Tahoma;
-    float: left;
-    line-height: 35px;
-}
-
-.logo span {
-    font: 12px/125% Tahoma;
-}
-
-#color-picker {
+.color-picker {
     margin: 25px auto;
     width: 240px;
+    height: 250px;
 }
 
-#color-values {
+.color-values {
     list-style: none;
     color: #222;
     height: 30px;
@@ -118,8 +96,14 @@ body {
 
 .pic-res {
     display: flex;
-    top: 350px;
-    position: absolute;
-    justify-content: center;
+    top: 202px;
+    position: relative;
+    justify-content: left;
     align-items: center;
+    width: 242px;
+    height: 50px;
+}
+
+.hex {
+    margin: 10px;
 }
