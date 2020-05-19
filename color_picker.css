@@ -36,23 +36,22 @@ body {
 
 #color-picker {
     margin: 25px auto;
-    width: 450px;
+    width: 240px;
 }
 
 #color-values {
-    display: flex;
     list-style: none;
     color: #222;
-    padding: 5px;
-    text-align: center;
-    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
 }
 
         /* Common stuff */
-.picker-wrapper,
-.pcr-wrapper {
-    position: relative;
-    float: left;
+.picker-wrapper {
+    position: absolute;
+    margin-left: 40px;
+    border: 1px solid black;
 }
 
 .picker-indicator,
@@ -82,7 +81,8 @@ body {
 }
 
 .cp-default .pcr-wrapper {
-    margin-left: 10px;
+    position: absolute;
+    border: 1px solid black;
 }
 
 .cp-default .picker-indicator {
@@ -108,10 +108,18 @@ body {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
     filter: alpha(opacity=60);
-    border: 4px solid lightblue;
+    border: 4px solid black;
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
     background-color: white;
+}
+
+.pic-res {
+    display: flex;
+    top: 350px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
 }
