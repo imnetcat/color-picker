@@ -19,22 +19,21 @@
 <center>
 <h1>Скрипт палитра цветов с помощью JavaScript</h1>
 
-<div id="color-picker" class="cp-default">
+<form id="color-picker" class="cp-default">
+    <row>
     <div class="picker-wrapper">
-    <div id="picker" class="picker"></div>
-    <div id="picker-indicator" class="picker-indicator"></div>
-</div>
-<div class="pcr-wrapper">
-    <div id="pcr" class="pcr"></div>
-    <div id="pcr-indicator" class="pcr-indicator"></div>
- </div>
-<ul id="color-values">
-    <li><label>RGB:</label><span id="rgb"></span></li>
-    <li><label>HSV:</label><span id="hsv"></span></li>
-    <li><label>HEX:</label><span id="hex"></span></li>
-    <li><div id="pcr_bg"></div></li>
-</ul>
-</div>
+        <div id="picker" class="picker"></div>
+        <div id="picker-indicator" class="picker-indicator"></div>
+    </div>
+    <div class="pcr-wrapper">
+        <div id="pcr" class="pcr"></div>
+        <div id="pcr-indicator" class="pcr-indicator"></div>
+    </div>
+    </row>
+    <div id="color-values">
+        <span id="hex"></span>
+    </div>
+</form>
 
 </center>
 </body>
