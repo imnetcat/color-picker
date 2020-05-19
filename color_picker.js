@@ -11,10 +11,12 @@ class ColorPalete {
                     mousepcr, mousePicker);
 
                 document.getElementById('hex').innerHTML = hex;
-                document.getElementById('rgb').innerHTML = 'rgb(' + rgb.r.toFixed() + ',' + rgb.g.toFixed() + ',' + rgb.b.toFixed() + ')';
-                document.getElementById('hsv').innerHTML = 'hsv(' + hsv.h.toFixed() + ',' + hsv.s.toFixed(2) + ',' + hsv.v.toFixed(2) + ')';
+                // for rgb color
+                //document.getElementById('rgb').innerHTML = 'rgb(' + rgb.r.toFixed() + ',' + rgb.g.toFixed() + ',' + rgb.b.toFixed() + ')';
+                // for hsv color
+                //document.getElementById('hsv').innerHTML = 'hsv(' + hsv.h.toFixed() + ',' + hsv.s.toFixed(2) + ',' + hsv.v.toFixed(2) + ')';
 
-                document.getElementById('pcr_bg').style.backgroundColor = hex;
+                document.getElementById('color-values').style.backgroundColor = hex;
             });
         cp.setHex('#D4EDFB');
     }
