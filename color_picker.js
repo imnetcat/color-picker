@@ -132,10 +132,9 @@ class ColorPalete {
     }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    
+const SetUpPaletes(){
     // создаем одну палитру
-    const picker1 = new Palete('picker1', '#238932', 
+    const picker1 = new Palete('picker1', '#238932',
         document.forms.picker1);
     // создаем вторую палитру
     const picker2 = new Palete('picker2', '#590f7a',
@@ -149,4 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     //   а вторую делаем открытой
     ColorPalete.Close('picker1');
     ColorPalete.Open('picker2');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    SetUpPaletes();
 });
