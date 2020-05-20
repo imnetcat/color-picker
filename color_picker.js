@@ -132,7 +132,7 @@ class ColorPalete {
     }
 };
 
-const SetUpPaletes(){
+const SetUpPaletes = () => {
     // создаем одну палитру
     const picker1 = new Palete('picker1', '#238932',
         document.forms.picker1);
