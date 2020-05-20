@@ -1,4 +1,5 @@
 ﻿'use strict';
+
 // обьект хранящий информацию об одной палитре
 class Palete {
     constructor(n, d, f) {
@@ -36,29 +37,41 @@ class Palete {
 // обработчик палитр
 class ColorPalete {
 
+    // все палитры
     static paletes = [];
+
+    // обработчик для текущих цветов
+    static ChangesHandler(hex, hsv, rgb, palete) {
+        palete.form.querySelector('.hex').innerHTML = hex;
+        // для получения rgb
+        //document.getElementById('rgb').innerHTML = 'rgb(' + rgb.r.toFixed() + ',' + rgb.g.toFixed() + ',' + rgb.b.toFixed() + ')';
+        // для получения hsv
+        //document.getElementById('hsv').innerHTML = 'hsv(' + hsv.h.toFixed() + ',' + hsv.s.toFixed(2) + ',' + hsv.v.toFixed(2) + ')';
+
+        palete.form.querySelectorAll('.color-values')[0].style.backgroundColor = hex;
+        palete.form.querySelectorAll('.color-values')[1].style.backgroundColor = hex;
+        palete.unsubmit = hex;
+        console.log(`Palete '${palete.name}' lazy change color to ${palete.unsubmit}`);
+    }
+
+    // движок для обработки изменений палитры по клику
+    // DO NOT CHANGE
+    static PickerHandler(mousePicker, mousepcr, palete) {
+        ColorPicker.positionIndicators(
+            palete.form.querySelector('.pcr-wrapper > .pcr-indicator'),
+            palete.form.querySelector('.picker-wrapper > .picker-indicator'),
+            mousepcr, mousePicker);
+    }
 
     static Init(paletes) {
         ColorPalete.paletes = paletes;
         for (const palete of ColorPalete.paletes) {
 
-            const cp = ColorPicker(palete.form.querySelector('.pcr-wrapper > .pcr'), palete.form.querySelector('.picker-wrapper > .picker'),
+            const cp = ColorPicker(palete.form.querySelector('.pcr-wrapper > .pcr'), 
+                palete.form.querySelector('.picker-wrapper > .picker'),
                 (hex, hsv, rgb, mousePicker, mousepcr) => {
-                    ColorPicker.positionIndicators(
-                        palete.form.querySelector('.pcr-wrapper > .pcr-indicator'),
-                        palete.form.querySelector('.picker-wrapper > .picker-indicator'),
-                        mousepcr, mousePicker);
-
-                    palete.form.querySelector('.hex').innerHTML = hex;
-                    // для получения rgb
-                    //document.getElementById('rgb').innerHTML = 'rgb(' + rgb.r.toFixed() + ',' + rgb.g.toFixed() + ',' + rgb.b.toFixed() + ')';
-                    // для получения hsv
-                    //document.getElementById('hsv').innerHTML = 'hsv(' + hsv.h.toFixed() + ',' + hsv.s.toFixed(2) + ',' + hsv.v.toFixed(2) + ')';
-
-                    palete.form.querySelectorAll('.color-values')[0].style.backgroundColor = hex;
-                    palete.form.querySelectorAll('.color-values')[1].style.backgroundColor = hex;
-                    palete.unsubmit = hex;
-                    console.log(`Palete '${palete.name}' lazy change color to ${palete.unsubmit}`);
+                    ColorPalete.PickerHandler(mousePicker, mousepcr, palete);
+                    ColorPalete.ChangesHandler(hex, hsv, rgb, palete);
                 });
 
             palete.form.querySelector('.submit-btn').addEventListener('click', (event) => {
