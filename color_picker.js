@@ -1,5 +1,39 @@
 ﻿'use strict';
+// обьект хранящий информацию об одной палитре
+class Palete {
+    constructor(n, d, f) {
+        this.name = n;
+        this.color = d;
+        this.unsubmit = d;
+        this.form = f;
+    }
 
+    GetColor() {
+        return this.color;
+    }
+
+    GetUnsubmitColor() {
+        return this.unsubmit;
+    }
+
+    SetColor(newColor) {
+        this.color = newColor;
+    }
+
+    SetUnsubmitColor(newColor) {
+        this.unsubmit = newColor;
+    }
+
+    SubmitChanges() {
+        this.SetColor(this.GetUnsubmitColor());
+    }
+
+    CancelChanges() {
+        this.SetUnsubmitColor(this.GetColor());
+    }
+}
+
+// обработчик палитр
 class ColorPalete {
 
     static paletes = [];
@@ -16,9 +50,9 @@ class ColorPalete {
                         mousepcr, mousePicker);
 
                     palete.form.querySelector('.hex').innerHTML = hex;
-                    // for rgb color
+                    // для получения rgb
                     //document.getElementById('rgb').innerHTML = 'rgb(' + rgb.r.toFixed() + ',' + rgb.g.toFixed() + ',' + rgb.b.toFixed() + ')';
-                    // for hsv color
+                    // для получения hsv
                     //document.getElementById('hsv').innerHTML = 'hsv(' + hsv.h.toFixed() + ',' + hsv.s.toFixed(2) + ',' + hsv.v.toFixed(2) + ')';
 
                     palete.form.querySelectorAll('.color-values')[0].style.backgroundColor = hex;
@@ -49,43 +83,36 @@ class ColorPalete {
             cp.setHex(palete.color);
         }
     }
-
-    static DeletePalete(name) {
-        ColorPalete.paletes = paletes.filter(p => p.name != name);
+    
+    static GetPalete(name) {
+        for (const palete of ColorPalete.paletes) {
+            if (palete.name === name)
+                return palete;
+        }
     }
 
+    // меняет цвет 
     static ChangeColor(name, color) {
-        for (const palete of ColorPalete.paletes) {
-            if (palete.name === name) {
-                palete.unsubmit = color;
-                break;
-            }
-        }
+        ColorPalete.GetPalete(name).SetUnsubmitColor(color);
     }
-
+    
+    // подтверждает изменения данной палитры
     static SubmitPalete(name) {
-        for (const palete of ColorPalete.paletes) {
-            if (palete.name === name) {
-                palete.color = palete.unsubmit;
-                break;
-            }
-        }
+        ColorPalete.GetPalete(name).SubmitChanges();
     }
 
+    // отменяет изменения данной палитры
     static CancelChanges(name) {
-        for (const palete of ColorPalete.paletes) {
-            if (palete.name === name) {
-                palete.unsubmit = palete.color;
-                break;
-            }
-        }
+        ColorPalete.GetPalete(name).CancelChanges();
     }
 
+    // открывает форму палитры
     static Open(name) {
         document.forms[name].querySelector('.pick-lable').hidden = true;
         document.forms[name].querySelector('.kat').style.marginTop = "0";
     }
 
+    // закрывает форму палитры
     static Close(name) {
         document.forms[name].querySelector('.pick-lable').hidden = false;
         document.forms[name].querySelector('.kat').style.marginTop = "-25000px";
@@ -93,22 +120,20 @@ class ColorPalete {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    class Palete {
-        constructor(n, d, f) {
-            this.name = n;
-            this.color = d;
-            this.unsubmit = d;
-            this.form = f;
-        }
-    }
+    
+    // создаем одну палитру
     const picker1 = new Palete('picker1', '#238932', 
         document.forms.picker1);
+    // создаем вторую палитру
     const picker2 = new Palete('picker2', '#590f7a',
         document.forms.picker2);
+    // инициализируем все палитры
     ColorPalete.Init([
         picker1,
         picker2
     ]);
+    // по умолчанию закрываем к примеру первую палитру
+    //   а вторую делаем открытой
     ColorPalete.Close('picker1');
-    ColorPalete.Close('picker2');
+    ColorPalete.Open('picker2');
 });
