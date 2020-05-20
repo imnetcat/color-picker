@@ -15,6 +15,7 @@ body {
     margin: 25px auto;
     width: 240px;
     height: 250px;
+    overflow: hidden;
 }
 
 .color-values {
